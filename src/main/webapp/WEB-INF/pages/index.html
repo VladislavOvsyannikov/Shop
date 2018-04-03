@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app" ng-controller="appController">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/resources/css/bootstrap3.3.7.css">
+    <script src="/resources/js/angular.min.js"></script>
+    <script src="/resources/js/ang.js"></script>
+</head>
+<body>
+
+<div ng-init="getUsername()">
+    Вы вошли как {{username}}
+</div>
+
+Заработало!
+
+Выведем всех пользователей из БД:
+<div ng-init="getUsers()">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Login</th>
+            <th>Password</th>
+            <th>Role</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="user in users">
+            <td>{{user.name}}</td>
+            <td>{{user.password}}</td>
+            <td>{{user.role}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
