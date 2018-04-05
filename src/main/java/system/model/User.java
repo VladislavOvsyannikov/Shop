@@ -2,6 +2,7 @@ package system.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "user", schema = "sql2230448")
@@ -19,6 +20,28 @@ public class User implements Serializable {
 
     @Column(name = "role", nullable = false)
     private String role;
+
+    @Column(name = "address", nullable = false)
+    private String address;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Cart> cart;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public List<Cart> getCart() {
+        return cart;
+    }
+
+    public void setCart(List<Cart> cart) {
+        this.cart = cart;
+    }
 
     public int getId() {
         return id;

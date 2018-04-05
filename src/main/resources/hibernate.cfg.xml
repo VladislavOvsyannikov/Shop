@@ -15,6 +15,10 @@
     <property name="hibernate.show_sql">true</property>
 
     <mapping class="system.model.User"/>
+    <mapping class="system.model.Cart"/>
+    <mapping class="system.model.Food"/>
+    <mapping class="system.model.Driver"/>
+    <mapping class="system.model.Type"/>
 
   </session-factory>
 </hibernate-configuration>
