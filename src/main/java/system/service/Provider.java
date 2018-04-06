@@ -28,7 +28,7 @@ public class Provider implements AuthenticationProvider{
         String login = authentication.getName();
         String password = authentication.getCredentials().toString();
         User user = null;
-        for (Object user1 : shopService.getAll("User")){
+        for (Object user1 : shopService.getAllUsers()){
             if (((User) user1).getName().equals(login) && ((User) user1).getPassword().equals(password)){
                 user = (User) user1;
             }
