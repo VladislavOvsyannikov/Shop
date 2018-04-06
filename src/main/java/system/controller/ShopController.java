@@ -31,6 +31,6 @@ public class ShopController {
     @RequestMapping(value = "/getUsers", method = RequestMethod.GET)
     public @ResponseBody
     List<User> getUsers(){
-        return shopService.getAll("User");
+        return shopService.getAllUsers();
     }
 }
