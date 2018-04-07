@@ -16,11 +16,11 @@ import java.util.List;
 @Service("provider")
 public class Provider implements AuthenticationProvider{
 
-    private ShopService shopService;
+    private DeliveryService deliveryService;
 
     @Autowired
-    public void setShopService(ShopService shopService) {
-        this.shopService = shopService;
+    public void setDeliveryService(DeliveryService deliveryService) {
+        this.deliveryService = deliveryService;
     }
 
 
@@ -28,7 +28,7 @@ public class Provider implements AuthenticationProvider{
         String login = authentication.getName();
         String password = authentication.getCredentials().toString();
         User user = null;
-        for (Object user1 : shopService.getAll("User")){
+        for (Object user1 : deliveryService.getAllUsers()){
             if (((User) user1).getName().equals(login) && ((User) user1).getPassword().equals(password)){
                 user = (User) user1;
             }
@@ -36,7 +36,6 @@ public class Provider implements AuthenticationProvider{
         if (user!=null){
             List<GrantedAuthority> grantedAuth = new ArrayList<GrantedAuthority>();
             grantedAuth.add(new SimpleGrantedAuthority(user.getRole()));
-            if (user.getRole().equals("ROLE_ADMIN")) grantedAuth.add(new SimpleGrantedAuthority("ROLE_USER"));
             return new UsernamePasswordAuthenticationToken(login, password, grantedAuth);
         }else {
             return null;

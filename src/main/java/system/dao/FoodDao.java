@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public class FoodDao extends GenericDao<Food> {
 
-    public List<Food> getAllFood() {
+    public List<Food> getAllFoods() {
         return getAll("Food");
     }
 

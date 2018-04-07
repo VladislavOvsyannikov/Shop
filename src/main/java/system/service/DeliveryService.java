@@ -4,16 +4,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import system.dao.GenericDao;
+import system.dao.FoodDao;
+import system.dao.TypeDao;
 import system.dao.UserDao;
 import system.model.User;
 
 import java.util.List;
 
 @Service
-public class ShopService {
+public class DeliveryService {
 
     private UserDao userDao;
+
+    private FoodDao foodDao;
+
+    private TypeDao typeDao;
+
+    @Autowired
+    public void setFoodDao(FoodDao foodDao) {
+        this.foodDao = foodDao;
+    }
+
+    @Autowired
+    public void setTypeDao(TypeDao typeDao) {
+        this.typeDao = typeDao;
+    }
 
     @Autowired
     public void setUserDao(UserDao userDao) {
@@ -36,17 +51,19 @@ public class ShopService {
 
     public String getUserName(){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth.getName().equals("anonymousUser")){
-            return "Гость";
-        }else return auth.getName();
+        return auth.getName();
     }
 
-    public void deleteUser(User user){
-        User user1 = userDao.getUser(user.getName());
-        userDao.deleteUser(user1);
-    }
 
     public List getAllUsers(){
         return  userDao.getAllUsers();
+    }
+
+    public List getAllFoods(){
+        return  foodDao.getAllFoods();
+    }
+
+    public List getAllTypes(){
+        return  typeDao.getAllTypes();
     }
 }

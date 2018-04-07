@@ -10,8 +10,8 @@
         <!--<intercept-url pattern="/shop/history" access="hasRole('ROLE_USER')"/>-->
         <!--<intercept-url pattern="/shop/admin" access="hasRole('ROLE_ADMIN')"/>-->
         <!--<intercept-url pattern="/shop/admin/**" access="hasRole('ROLE_ADMIN')"/>-->
-        <form-login login-page="/login" default-target-url="/index" authentication-failure-url="/error"/>
-        <logout logout-success-url="/index"/>
+        <form-login login-page="/login" default-target-url="/home" authentication-failure-url="/error"/>
+        <logout logout-success-url="/home"/>
         <csrf disabled="true"/>
     </http>
 

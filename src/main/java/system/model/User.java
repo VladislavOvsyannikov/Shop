@@ -21,7 +21,7 @@ public class User implements Serializable {
     @Column(name = "role", nullable = false)
     private String role;
 
-    @Column(name = "address", nullable = false)
+    @Column(name = "address")
     private String address;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)

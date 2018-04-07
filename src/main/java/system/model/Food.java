@@ -1,5 +1,7 @@
 package system.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -25,6 +27,7 @@ public class Food implements Serializable {
     private String structure;
 
     @ManyToMany(mappedBy = "foods")
+    @JsonIgnore
     private List<Cart> carts;
 
     @ManyToOne
