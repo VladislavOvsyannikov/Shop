@@ -58,13 +58,29 @@
 
     <!-- Jumbotron Header -->
     <header class="jumbotron my-4">
-        <h6 class="display-3">Типо доставка еды</h6>
-        <p class="lead">Какое-то описание...</p>
+        <h6 class="display-3">Delivery</h6>
+        <p class="lead">Ваша любимая доставка</p>
     </header>
+
+    <table class="table bg-color2" ng-init="getTypes()">
+        <thead>
+        <tr>
+            <th class="text-center">
+                <button data-ng-click="setSort('Все товары')"
+                        class="btn btn-link text-white btn-lg">Все товары</button>
+            </th>
+            <th ng-repeat="type in types" class="text-center">
+                <button data-ng-click="setSort(type.name)"
+                        class="btn btn-link text-white btn-lg">{{type.name}}</button>
+            </th>
+        </tr>
+        </thead>
+    </table>
 
     <!-- Page Features -->
     <div class="row text-center" ng-init="getFoods()">
-        <div ng-repeat="food in foods" class="col-lg-3 col-md-6 mb-4">
+        <div ng-repeat="food in foods" class="col-lg-3 col-md-6 mb-4"
+            ng-if="food.type.name==sort || sort=='Все товары'">
             <div class="card">
                 <img class="card-img-top" src="/resources/photos/{{food.id}}.jpg" alt="">
                 <div class="card-body">
@@ -72,7 +88,8 @@
                     <p class="card-text">{{food.description}}</p>
                 </div>
                 <div class="card-footer">
-                    <a href="#" class="btn btn-primary">Добавить в корзину</a>
+                    <h4 class="card-text text-danger">{{food.price}} руб.</h4>
+                    <a href="#" class="btn btn-primary">Заказать</a>
                 </div>
             </div>
         </div>

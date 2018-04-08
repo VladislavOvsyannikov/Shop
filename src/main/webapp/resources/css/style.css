@@ -17,6 +17,10 @@ body {
   background-color: #15b412;
 }
 
+.bg-color2 {
+  background-color: rgba(21, 180, 18, 0.6);;
+}
+
 .form-signin {
   width: 100%;
   max-width: 330px;

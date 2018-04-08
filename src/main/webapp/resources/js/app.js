@@ -1,7 +1,7 @@
 var app = angular.module('app', []);
 var config = {headers: {'Content-Type': 'application/json;charset=utf-8;'}};
 
-app.controller('getController', function ($scope, $http) {
+app.controller('getController', function ($scope, $http, $location, $window) {
 
     $scope.getUsername = function () {
         var url = "getUsername";
@@ -27,7 +27,12 @@ app.controller('getController', function ($scope, $http) {
     $scope.getFoods = function () {
         var url = "getFoods";
         $http.get(url, config).then(function (response) {
+            $scope.sort = 'Все товары';
             $scope.foods = response.data;
+
+            $scope.setSort = function (sortName) {
+                $scope.sort = sortName;
+            };
         });
     };
 
