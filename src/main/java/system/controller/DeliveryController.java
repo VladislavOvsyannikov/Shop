@@ -22,7 +22,10 @@ public class DeliveryController {
     public String shopRegistration() {
         return "/index.html";
     }
-
+    @RequestMapping(value = "/contacts", method = RequestMethod.GET)
+    public String contacts() {
+        return "/contacts.html";
+    }
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String home() {
         return "/home.html";
