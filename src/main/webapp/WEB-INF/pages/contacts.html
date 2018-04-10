@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="app" ng-controller="getController">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Delivery</title>
@@ -12,8 +12,6 @@
     <script src="/resources/js/bootstrap.min.js"></script>
 </head>
 <body>
-
-<!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-color fixed-top">
     <div class="container">
         <a class="navbar-brand" href="#">Delivery</a>
@@ -29,7 +27,7 @@
                     <a class="nav-link" href="#">О нас</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="http://localhost:8080/contacts">Контакты</a>
+                    <a class="nav-link" href="#">Контакты</a>
                 </li>
                 <li class="nav-item active dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -41,7 +39,7 @@
                         <a class="dropdown-item" href="http://localhost:8080/registration">Регистрация</a>
                     </div>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown" ng-if="username!='anonymousUser'">
-                        <a class="dropdown-item" href="#">{{username}}:</a>
+                        <a class="dropdown-item" href="#">{{username}}</a>
                         <a class="dropdown-item" href="http://localhost:8080/information">Личные данные</a>
                         <a class="dropdown-item" href="http://localhost:8080/cart">Корзина</a>
                         <div class="dropdown-divider"></div>
@@ -52,56 +50,12 @@
         </div>
     </div>
 </nav>
-
-<!-- Page Content -->
+<br><br><br>
 <div class="container">
-
-    <!-- Jumbotron Header -->
-    <header class="jumbotron my-4">
-        <h6 class="display-3">Delivery</h6>
-        <p class="lead">Ваша любимая доставка</p>
-    </header>
-
-    <table class="table bg-color2" ng-init="getTypes()">
-        <thead>
-        <tr>
-            <th class="text-center">
-                <button data-ng-click="setSort('Все товары')"
-                        class="btn btn-link text-white btn-lg">Все товары</button>
-            </th>
-            <th ng-repeat="type in types" class="text-center">
-                <button data-ng-click="setSort(type.name)"
-                        class="btn btn-link text-white btn-lg">{{type.name}}</button>
-            </th>
-        </tr>
-        </thead>
-    </table>
-
-    <!-- Page Features -->
-    <div class="row text-center" ng-init="getFoods()">
-        <div ng-repeat="food in foods" class="col-lg-3 col-md-6 mb-4"
-            ng-if="food.type.name==sort || sort=='Все товары'">
-            <div class="card">
-                <img class="card-img-top" src="/resources/photos/{{food.id}}.jpg" alt="">
-                <div class="card-body">
-                    <h4 class="card-title">{{food.name}}</h4>
-                    <p class="card-text">{{food.description}}</p>
-                </div>
-                <div class="card-footer">
-                    <h4 class="card-text text-danger">{{food.price}} руб.</h4>
-                    <a href="#" class="btn btn-primary">Заказать</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    <h1>Как с нами связаться:</h1>
+    <p>Если что, звоните <mark>Арсентию</mark> +79131606039 (это не опечатка, а имя такое).</p>
 </div>
-
-
-<footer class="py-3 bg-dark">
-    <div class="container">
-        <p class="m-0 text-center text-white">324 group 2018</p>
-    </div>
-</footer>
 
 </body>
 </html>
+
