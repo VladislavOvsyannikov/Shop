@@ -69,7 +69,7 @@ public class DeliveryService {
         if (carts.isEmpty() || getLastCart().getStatus().equals("confirm")) {
             Cart cart = new Cart();
             cart.setDate(null);
-            cart.setStatus("not confirm");
+            cart.setStatus("not confir");
             List<Food> temp = new ArrayList<Food>();
             temp.add(getFood(id));
             cart.setFoods(temp);
