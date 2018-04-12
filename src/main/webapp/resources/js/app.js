@@ -58,4 +58,21 @@ app.controller('postController', function ($scope, $http, $location, $window) {
         });
     };
 
+    var id;
+    $scope.setId = function (foodId) {
+        id = foodId;
+    };
+    $scope.addFoodToCart = function () {
+        var url = "addFoodToCart";
+        var data = {
+            id: id
+        };
+        $http.post(url, data, config).then(function (response) {
+        });
+    };
+
+    $scope.goToLogin = function () {
+        $window.location.href = '/login';
+    };
+
 });

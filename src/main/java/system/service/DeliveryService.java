@@ -54,6 +54,10 @@ public class DeliveryService {
         return auth.getName();
     }
 
+    public void addFoodToCart(int id) {
+        // надо написать
+    }
+
 
     public List getAllUsers(){
         return  userDao.getAllUsers();

@@ -26,9 +26,6 @@
                     <a class="nav-link" href="http://localhost:8080/home">Главная</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="http://localhost:8080/we">О нас</a>
-                </li>
-                <li class="nav-item active">
                     <a class="nav-link" href="http://localhost:8080/contacts">Контакты</a>
                 </li>
                 <li class="nav-item active dropdown">
@@ -87,9 +84,15 @@
                     <h4 class="card-title">{{food.name}}</h4>
                     <p class="card-text">{{food.description}}</p>
                 </div>
-                <div class="card-footer">
+                <div class="card-footer" ng-controller="postController">
                     <h4 class="card-text text-danger">{{food.price}} руб.</h4>
-                    <a href="#" class="btn btn-primary">Заказать</a>
+                    <form ng-if="username!='anonymousUser'" name="post" ng-submit="addFoodToCart()">
+                        <button type="submit" ng-click="setId(food.id)"
+                                class="btn btn-primary">Заказать</button>
+                    </form>
+                    <form ng-if="username=='anonymousUser'" name="post" ng-submit="goToLogin()">
+                        <button type="submit" class="btn btn-primary">Заказать</button>
+                    </form>
                 </div>
             </div>
         </div>

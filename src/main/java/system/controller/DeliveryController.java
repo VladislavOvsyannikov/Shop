@@ -11,13 +11,6 @@ import java.util.List;
 @Controller
 public class DeliveryController {
 
-    private DeliveryService deliveryService;
-
-    @Autowired
-    public void setDeliveryService(DeliveryService deliveryService) {
-        this.deliveryService = deliveryService;
-    }
-
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String shopRegistration() {
         return "/index.html";
@@ -25,11 +18,6 @@ public class DeliveryController {
     @RequestMapping(value = "/contacts", method = RequestMethod.GET)
     public String contacts() {
         return "/contacts.html";
-    }
-
-    @RequestMapping(value = "/we", method = RequestMethod.GET)
-    public String we() {
-        return "/we.html";
     }
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)
@@ -51,5 +39,4 @@ public class DeliveryController {
     public String error() {
         return "/error.html";
     }
-
 }

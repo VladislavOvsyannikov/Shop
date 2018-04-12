@@ -3,6 +3,7 @@ package system.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import system.model.Food;
 import system.model.User;
 import system.service.DeliveryService;
 
@@ -41,5 +42,10 @@ public class DeliveryRestController {
     @RequestMapping(value = "/submitRegistration", method = RequestMethod.POST)
     public boolean shopRegistration(@RequestBody User user){
         return deliveryService.addUser(user);
+    }
+
+    @RequestMapping(value = "/addFoodToCart", method = RequestMethod.POST)
+    public void addFoodToCart(@RequestBody Food food){
+        deliveryService.addFoodToCart(food.getId());
     }
 }
