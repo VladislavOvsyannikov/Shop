@@ -55,9 +55,12 @@ public class DeliveryService {
     }
 
     public void addFoodToCart(int id) {
-        // надо написать
+        //надо написать
     }
 
+    public User getCurrentUser(){
+        return userDao.getUser(getUserName());
+    }
 
     public List getAllUsers(){
         return  userDao.getAllUsers();

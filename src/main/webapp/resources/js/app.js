@@ -10,6 +10,13 @@ app.controller('getController', function ($scope, $http, $location, $window) {
         });
     };
 
+    $scope.getCurrentUser = function () {
+        var url = "getCurrentUser";
+        $http.get(url, config).then(function (response) {
+            $scope.user = response.data;
+        });
+    };
+
     $scope.getUsers = function () {
         var url = "getUsers";
         $http.get(url, config).then(function (response) {

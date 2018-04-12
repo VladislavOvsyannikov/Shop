@@ -24,6 +24,11 @@ public class DeliveryRestController {
         return deliveryService.getUserName();
     }
 
+    @RequestMapping(value = "/getCurrentUser", method = RequestMethod.GET)
+    public User getCurrentUser(){
+        return deliveryService.getCurrentUser();
+    }
+
     @RequestMapping(value = "/getUsers", method = RequestMethod.GET)
     public List<User> getUsers(){
         return deliveryService.getAllUsers();
