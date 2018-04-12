@@ -13,6 +13,7 @@ import system.model.Food;
 import system.model.User;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -84,6 +85,7 @@ public class DeliveryService {
     public void confirmCart() {
         Cart cart = getLastCart();
         cart.setStatus("confirm");
+        cart.setDate(new Date());
         cartDao.updateCart(cart);
     }
 
