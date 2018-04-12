@@ -11,21 +11,16 @@ import java.util.List;
 @Controller
 public class DeliveryController {
 
-    private DeliveryService deliveryService;
-
-    @Autowired
-    public void setDeliveryService(DeliveryService deliveryService) {
-        this.deliveryService = deliveryService;
-    }
-
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String shopRegistration() {
         return "/index.html";
     }
+
     @RequestMapping(value = "/contacts", method = RequestMethod.GET)
     public String contacts() {
         return "/contacts.html";
     }
+
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String home() {
         return "/home.html";
