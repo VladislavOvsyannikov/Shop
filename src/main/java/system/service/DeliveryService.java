@@ -1,8 +1,6 @@
 package system.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -67,7 +65,6 @@ public class DeliveryService {
         return auth.getName();
     }
 
-    @Secured("ROLE_USER")
     public void addFoodToCart(int id) {
         Cart cart1 = getLastCart();
         if (cart1 == null || cart1.getStatus().equals("confirm")) {
@@ -86,11 +83,22 @@ public class DeliveryService {
     }
 
     public void deleteFromCart(int id) {
+<<<<<<< HEAD
         Cart cart = getLastCart();
         List<Food> foods = cart.getFoods();
         if (foods.size() != 1) foods.remove(getFood(id));
         else foods.clear();
         cartDao.updateCart(cart);
+=======
+        Cart lastCart = getLastCart();
+        List<Food> foods = lastCart.getFoods();
+        if (foods.size() != 1) {
+            foods.remove(getFood(id));
+        } else {
+            foods.clear();
+        }
+        cartDao.update(lastCart);
+>>>>>>> origin/master
     }
 
     public void confirmCart() {
