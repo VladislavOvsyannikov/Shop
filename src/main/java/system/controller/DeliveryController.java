@@ -26,6 +26,12 @@ public class DeliveryController {
     public String contacts() {
         return "/contacts.html";
     }
+
+    @RequestMapping(value = "/we", method = RequestMethod.GET)
+    public String we() {
+        return "/we.html";
+    }
+
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String home() {
         return "/home.html";
