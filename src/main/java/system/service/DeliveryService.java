@@ -65,22 +65,20 @@ public class DeliveryService {
     }
 
     public void addFoodToCart(int id) {
-        List<Cart> carts = getCurrentUser().getCart();
-        if (carts.isEmpty() || getLastCart().getStatus().equals("confirm")) {
+        Cart cart1 = getLastCart();
+        if (cart1==null || cart1.getStatus().equals("confirm")) {
             Cart cart = new Cart();
-            cart.setDate(null);
-            cart.setStatus("not confir");
-            List<Food> temp = new ArrayList<Food>();
-            temp.add(getFood(id));
-            cart.setFoods(temp);
-            carts.add(cart);
+            cart.setStatus("not confirm");
+            cart.setUser(getCurrentUser());
+            List<Food> foods = new ArrayList<Food>();
+            foods.add(getFood(id));
+            cart.setFoods(foods);
             cartDao.saveCart(cart);
         } else {
-            List<Food> foods = getLastCart().getFoods();
+            List<Food> foods = cart1.getFoods();
             foods.add(getFood(id));
-            cartDao.update(getLastCart());
+            cartDao.update(cart1);
         }
-
     }
 
     public void confirmCart() {
@@ -91,20 +89,17 @@ public class DeliveryService {
 
     public Cart getLastCart() {
         List<Cart> carts = getCurrentUser().getCart();
-        int max = -1;
-        int maxind = 0;
-        for (int i = 0; i < carts.size(); ) {
-            if (carts.get(i).getId() > max) {
-                max = carts.get(i).getId();
-                maxind = i;
+        if (carts.size()!=0) {
+            int max = -1;
+            int maxind = 0;
+            for (int i = 0; i < carts.size();i++) {
+                if (carts.get(i).getId() > max) {
+                    max = carts.get(i).getId();
+                    maxind = i;
+                }
             }
-        }
-        return carts.get(maxind);
-    }
-
-    public void addFood(int id, Cart cart) {
-        List<Food> foods = cart.getFoods();
-        foods.add(getFood(id));
+            return carts.get(maxind);
+        }else return null;
     }
 
     public User getCurrentUser() {
