@@ -18,7 +18,7 @@ public class Food implements Serializable {
     private String name;
 
     @Column(name = "price", nullable = false)
-    private String price;
+    private int price;
 
     @Column(name = "description", nullable = false)
     private String description;
@@ -58,11 +58,11 @@ public class Food implements Serializable {
         this.name = name;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
