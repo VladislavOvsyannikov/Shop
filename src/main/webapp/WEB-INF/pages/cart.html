@@ -50,7 +50,7 @@
 </nav>
 
 <div class="container">
-    <div ng-init="getLastCart()">
+    <div ng-controller="postController" ng-init="getLastCart()">
         <table class="table">
             <thead>
             <tr>
@@ -65,6 +65,7 @@
             </tr>
             </tbody>
         </table>
+        {{getCost(cart.foods)}}
     </div>
 </div>
 </body>

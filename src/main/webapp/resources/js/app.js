@@ -116,4 +116,12 @@ app.controller('postController', function ($scope, $http, $location, $window) {
         $window.location.href = '/login';
     };
 
+    $scope.getCost = function (foods) {
+        var sum = 0;
+        for (i=0; i<foods.length; i++){
+            sum+=foods[i].price;
+        }
+        return sum;
+    }
+
 });
