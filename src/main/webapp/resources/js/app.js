@@ -91,6 +91,7 @@ app.controller('postController', function ($scope, $http, $location, $window) {
             id: id
         };
         $http.post(url, data, config).then(function (response) {
+            $window.location.href = '/cart';
         });
     };
 
@@ -109,6 +110,7 @@ app.controller('postController', function ($scope, $http, $location, $window) {
     $scope.confirmCart = function () {
         var url = "confirmCart";
         $http.post(url, config).then(function (response) {
+            $window.location.href = '/cart';
         });
     };
 
