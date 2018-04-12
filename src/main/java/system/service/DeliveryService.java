@@ -83,13 +83,6 @@ public class DeliveryService {
     }
 
     public void deleteFromCart(int id) {
-<<<<<<< HEAD
-        Cart cart = getLastCart();
-        List<Food> foods = cart.getFoods();
-        if (foods.size() != 1) foods.remove(getFood(id));
-        else foods.clear();
-        cartDao.updateCart(cart);
-=======
         Cart lastCart = getLastCart();
         List<Food> foods = lastCart.getFoods();
         if (foods.size() != 1) {
@@ -98,14 +91,6 @@ public class DeliveryService {
             foods.clear();
         }
         cartDao.update(lastCart);
->>>>>>> origin/master
-    }
-
-    public void confirmCart() {
-        Cart cart = getLastCart();
-        cart.setStatus("confirm");
-        cart.setDate(new Date());
-        cartDao.updateCart(cart);
     }
 
     public Cart getLastCart() {
@@ -125,6 +110,13 @@ public class DeliveryService {
 
     public User getCurrentUser() {
         return userDao.getUser(getUserName());
+    }
+
+    public void confirmCart() {
+        Cart cart = getLastCart();
+        cart.setStatus("confirm");
+        cart.setDate(new Date());
+        cartDao.updateCart(cart);
     }
 
     public void updateUser(User user) {

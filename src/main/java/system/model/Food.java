@@ -18,20 +18,6 @@ public class Food implements Serializable {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Food food = (Food) o;
-        return id == food.id;
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(id);
-    }
-
     @Column(name = "price", nullable = false)
     private int price;
 
@@ -103,5 +89,18 @@ public class Food implements Serializable {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Food food = (Food) o;
+        return id == food.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

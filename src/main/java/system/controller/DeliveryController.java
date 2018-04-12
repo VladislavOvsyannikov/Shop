@@ -31,11 +31,6 @@ public class DeliveryController {
         return "/login.html";
     }
 
-    @RequestMapping(value = "/information", method = RequestMethod.GET)
-    public String information() {
-        return "/information.html";
-    }
-
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration() {
         return "/registration.html";
