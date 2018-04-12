@@ -67,7 +67,7 @@ public class DeliveryService {
 
     public void addFoodToCart(int id) {
         Cart cart1 = getLastCart();
-        if (cart1==null || cart1.getStatus().equals("confirm")) {
+        if (cart1 == null || cart1.getStatus().equals("confirm")) {
             Cart cart = new Cart();
             cart.setStatus("not confirm");
             cart.setUser(getCurrentUser());
@@ -82,6 +82,12 @@ public class DeliveryService {
         }
     }
 
+    public void deleteFromCart(int id) {
+        List<Food> foods = getLastCart().getFoods();
+        if (foods.size() != 1) {foods.remove(getFood(id));}
+        else {foods.clear();}
+    }
+
     public void confirmCart() {
         Cart cart = getLastCart();
         cart.setStatus("confirm");
@@ -91,17 +97,17 @@ public class DeliveryService {
 
     public Cart getLastCart() {
         List<Cart> carts = getCurrentUser().getCart();
-        if (carts.size()!=0) {
+        if (carts.size() != 0) {
             int max = -1;
             int maxind = 0;
-            for (int i = 0; i < carts.size();i++) {
+            for (int i = 0; i < carts.size(); i++) {
                 if (carts.get(i).getId() > max) {
                     max = carts.get(i).getId();
                     maxind = i;
                 }
             }
             return carts.get(maxind);
-        }else return null;
+        } else return null;
     }
 
     public User getCurrentUser() {
