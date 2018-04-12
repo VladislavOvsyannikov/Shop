@@ -78,6 +78,21 @@ app.controller('postController', function ($scope, $http, $location, $window) {
         });
     };
 
+    $scope.deleteFromCart = function () {
+        var url = "deleteFromCart";
+        var data = {
+            id: id
+        };
+        $http.post(url, data, config).then(function (response) {
+        });
+    };
+
+    $scope.confirmCart = function () {
+        var url = "confirmCart";
+        $http.post(url, config).then(function (response) {
+        });
+    };
+
     $scope.goToLogin = function () {
         $window.location.href = '/login';
     };
