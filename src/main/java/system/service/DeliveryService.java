@@ -83,9 +83,11 @@ public class DeliveryService {
     }
 
     public void deleteFromCart(int id) {
-        List<Food> foods = getLastCart().getFoods();
+        Cart cart = getLastCart();
+        List<Food> foods = cart.getFoods();
         if (foods.size() != 1) {foods.remove(getFood(id));}
-        else {foods.clear();}
+        else foods.clear();
+        cartDao.updateCart(cart);
     }
 
     public void confirmCart() {

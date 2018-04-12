@@ -49,19 +49,33 @@
     </div>
 </nav>
 
+
+
 <div class="container">
+    <header class="jumbotron my-4">
+        <h6 class="display-3">Ваша корзина </h6>
+    </header>
     <div ng-init="getLastCart()">
         <table class="table">
             <thead>
             <tr>
                 <th>Наименование товара</th>
                 <th>Цена</th>
+                <th>Опции</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="food in cart.foods">
                 <td>{{food.name}}</td>
                 <td>{{food.price}}</td>
+                <td>
+                    <div ng-controller="postController">
+                        <form name="post" ng-submit="deleteFromCart()">
+                            <button type="submit" ng-click="setId(food.id)"
+                                    class="btn btn-danger">Удалить</button>
+                        </form>
+                    </div>
+                </td>
             </tr>
             </tbody>
         </table>
