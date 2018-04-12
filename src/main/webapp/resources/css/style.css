@@ -21,6 +21,14 @@ body {
   background-color: rgba(21, 180, 18, 0.6);;
 }
 
+.bg-color3 {
+  background-color: rgba(21, 180, 18, 0.23);;
+}
+
+.borderless td, .borderless th {
+  border: none;
+}
+
 .form-signin {
   width: 100%;
   max-width: 330px;

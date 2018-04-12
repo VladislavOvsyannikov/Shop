@@ -76,6 +76,4 @@ public class DeliveryRestController {
     public void updateUser(@RequestBody User user){
         deliveryService.updateUser(user);
     }
-
-
 }

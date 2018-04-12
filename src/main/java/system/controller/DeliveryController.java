@@ -45,4 +45,9 @@ public class DeliveryController {
     public String cart() {
         return "/cart.html";
     }
+
+    @RequestMapping(value = "/information", method = RequestMethod.GET)
+    public String information() {
+        return "/information.html";
+    }
 }

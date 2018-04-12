@@ -88,7 +88,7 @@ public class DeliveryService {
     public void deleteFromCart(int id) {
         Cart cart = getLastCart();
         List<Food> foods = cart.getFoods();
-        if (foods.size() != 1) {foods.remove(getFood(id));}
+        if (foods.size() != 1) foods.remove(getFood(id));
         else foods.clear();
         cartDao.updateCart(cart);
     }
@@ -121,7 +121,6 @@ public class DeliveryService {
 
     public void updateUser(User user) {
         //надо написать
-//        userDao.updateUser(user);
     }
 
 
