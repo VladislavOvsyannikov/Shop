@@ -16,7 +16,7 @@ public class Cart implements Serializable {
     @Column(name = "status", nullable = false)
     private String status;
 
-    @Column(name = "date", nullable = false)
+    @Column(name = "date")
     private Date date;
 
     @ManyToOne

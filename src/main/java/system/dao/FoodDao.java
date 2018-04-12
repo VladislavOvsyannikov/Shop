@@ -15,8 +15,8 @@ public class FoodDao extends GenericDao<Food> {
         return getAll("Food");
     }
 
-    public Food getFood(String name) {
-        return getElement("from Food where name=:n", name);
+    public Food getFood(int id) {
+        return getElement("from Food where id=:n", id);
     }
 
     public void saveFood(Food food) {

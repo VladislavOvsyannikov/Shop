@@ -9,23 +9,27 @@ import java.util.List;
 @Repository
 public class CartDao extends GenericDao<Cart> {
 
-    public List<Cart> getAllCarts(){
+    public List<Cart> getAllCarts() {
         return getAll("Cart");
     }
 
-    public Cart getCart(String name){
+    public Cart getCart(String name) {
         return getElement("from Cart where name=:n", name);
     }
 
-    public void saveCard(Cart cart){
+    public void saveCart(Cart cart) {
         save(cart);
     }
 
-    public List<Cart> getCarts(String name){
+    public void updateCart(Cart cart) {
+        update(cart);
+    }
+
+    public List<Cart> getCarts(String name) {
         return getList("from Cart where name=:n", name);
     }
 
-    public void deleteCart(Cart cart){
+    public void deleteCart(Cart cart) {
         delete(cart);
     }
 }
