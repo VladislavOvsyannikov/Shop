@@ -114,6 +114,12 @@ public class DeliveryService {
         return userDao.getUser(getUserName());
     }
 
+    public void updateUser(User user) {
+        //надо написать
+//        userDao.updateUser(user);
+    }
+
+
     public List getAllUsers() {
         return userDao.getAllUsers();
     }

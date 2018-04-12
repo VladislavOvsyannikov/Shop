@@ -15,9 +15,15 @@ public class DeliveryController {
     public String shopRegistration() {
         return "/index.html";
     }
+
     @RequestMapping(value = "/contacts", method = RequestMethod.GET)
     public String contacts() {
         return "/contacts.html";
+    }
+
+    @RequestMapping(value = "/cart", method = RequestMethod.GET)
+    public String cart() {
+        return "/cart.html";
     }
 
     @RequestMapping(value = "/home", method = RequestMethod.GET)

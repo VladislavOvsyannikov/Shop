@@ -43,6 +43,13 @@ app.controller('getController', function ($scope, $http, $location, $window) {
         });
     };
 
+    $scope.getLastCart = function () {
+        var url = "getLastCart";
+        $http.get(url, config).then(function (response) {
+            $scope.cart = response.data;
+        });
+    };
+
 });
 
 app.controller('postController', function ($scope, $http, $location, $window) {
@@ -82,6 +89,18 @@ app.controller('postController', function ($scope, $http, $location, $window) {
         var url = "deleteFromCart";
         var data = {
             id: id
+        };
+        $http.post(url, data, config).then(function (response) {
+        });
+    };
+
+    $scope.updateUser = function () {
+        var url = "updateUser";
+        var data = {
+            id: id,
+            name: $scope.name,
+            password: $scope.password,
+            address: $scope.address
         };
         $http.post(url, data, config).then(function (response) {
         });
