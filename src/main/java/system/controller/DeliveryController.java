@@ -21,11 +21,6 @@ public class DeliveryController {
         return "/contacts.html";
     }
 
-    @RequestMapping(value = "/cart", method = RequestMethod.GET)
-    public String cart() {
-        return "/cart.html";
-    }
-
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String home() {
         return "/home.html";
@@ -45,6 +40,7 @@ public class DeliveryController {
     public String error() {
         return "/error.html";
     }
+
     @RequestMapping(value = "/cart", method = RequestMethod.GET)
     public String cart() {
         return "/cart.html";
