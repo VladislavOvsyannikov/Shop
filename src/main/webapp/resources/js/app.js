@@ -43,6 +43,13 @@ app.controller('getController', function ($scope, $http, $location, $window) {
         });
     };
 
+    $scope.getLastCart = function () {
+        var url = "getLastCart";
+        $http.get(url, config).then(function (response) {
+            $scope.cart = response.data;
+        });
+    };
+
 });
 
 app.controller('postController', function ($scope, $http, $location, $window) {

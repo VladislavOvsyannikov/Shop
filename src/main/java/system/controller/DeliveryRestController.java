@@ -3,6 +3,7 @@ package system.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import system.model.Cart;
 import system.model.Food;
 import system.model.User;
 import system.service.DeliveryService;
@@ -42,6 +43,11 @@ public class DeliveryRestController {
     @RequestMapping(value = "/getTypes", method = RequestMethod.GET)
     public List<User> getTypes(){
         return deliveryService.getAllTypes();
+    }
+
+    @ RequestMapping(value = "/getLastCart", method = RequestMethod.GET)
+    public Cart getLastCart(){
+        return deliveryService.getLastCart();
     }
 
     @RequestMapping(value = "/submitRegistration", method = RequestMethod.POST)
