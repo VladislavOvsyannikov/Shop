@@ -59,4 +59,14 @@ public class DeliveryRestController {
     public void addFoodToCart(@RequestBody Food food){
         deliveryService.addFoodToCart(food.getId());
     }
+
+    @RequestMapping(value = "/deleteFromCart", method = RequestMethod.POST)
+    public void deleteFromCart(@RequestBody Food food){
+        deliveryService.deleteFromCart(food.getId());
+    }
+
+    @RequestMapping(value = "/confirmCart", method = RequestMethod.POST)
+    public void confirmCart(){
+        deliveryService.confirmCart();
+    }
 }
