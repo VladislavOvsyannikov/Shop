@@ -120,7 +120,11 @@ public class DeliveryService {
     }
 
     public void updateUser(User user) {
-        //надо написать
+        User user1 = userDao.getUserId(user.getId());
+        user1.setName(user.getName());
+        user1.setPassword(user.getPassword());
+        user1.setAddress(user.getAddress());
+        userDao.updateUser(user1);
     }
 
 
