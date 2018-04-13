@@ -50,6 +50,13 @@ app.controller('getController', function ($scope, $http, $location, $window) {
         });
     };
 
+    $scope.getCarts = function () {
+        var url = "getCarts";
+        $http.get(url, config).then(function (response) {
+            $scope.carts = response.data;
+        });
+    };
+
 });
 
 app.controller('postController', function ($scope, $http, $location, $window) {
@@ -82,6 +89,7 @@ app.controller('postController', function ($scope, $http, $location, $window) {
             id: id
         };
         $http.post(url, data, config).then(function (response) {
+            $window.location.href = '/cart';
         });
     };
 
@@ -97,13 +105,20 @@ app.controller('postController', function ($scope, $http, $location, $window) {
 
     $scope.updateUser = function () {
         var url = "updateUser";
+        var name1 = $scope.name;
+        var password1 = $scope.password;
         var data = {
             id: id,
-            name: $scope.name,
-            password: $scope.password,
-            address: $scope.address
+            name: name1,
+            password: password1,
+            address: $scope.address1
         };
         $http.post(url, data, config).then(function (response) {
+            if ((name1!=null && name1 !== "") || (password1!=null && password1 !== "")){
+                $window.location.href = '/logout';
+            }else {
+                $window.location.href = '/information';
+            }
         });
     };
 
@@ -116,6 +131,10 @@ app.controller('postController', function ($scope, $http, $location, $window) {
 
     $scope.goToLogin = function () {
         $window.location.href = '/login';
+    };
+
+    $scope.goToInformation = function () {
+        $window.location.href = '/information';
     };
 
     $scope.getCost = function (foods) {

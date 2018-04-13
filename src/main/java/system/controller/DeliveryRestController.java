@@ -50,6 +50,11 @@ public class DeliveryRestController {
         return deliveryService.getLastCart();
     }
 
+    @RequestMapping(value = "/getCarts", method = RequestMethod.GET)
+    public List<Cart> getCarts(){
+        return deliveryService.getCarts();
+    }
+
 
 
     @RequestMapping(value = "/submitRegistration", method = RequestMethod.POST)

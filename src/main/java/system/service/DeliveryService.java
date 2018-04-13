@@ -1,6 +1,7 @@
 package system.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -47,6 +48,7 @@ public class DeliveryService {
         this.cartDao = cartDao;
     }
 
+
     public boolean addUser(User user) {
         List<User> users = userDao.getUsers(user.getName());
         if (!user.getName().equals("") && !user.getPassword().equals("") && users.isEmpty()) {
@@ -65,6 +67,7 @@ public class DeliveryService {
         return auth.getName();
     }
 
+    @Secured("ROLE_USER")
     public void addFoodToCart(int id) {
         Cart cart1 = getLastCart();
         if (cart1 == null || cart1.getStatus().equals("confirm")) {
@@ -121,10 +124,21 @@ public class DeliveryService {
 
     public void updateUser(User user) {
         User user1 = userDao.getUserId(user.getId());
-        user1.setName(user.getName());
-        user1.setPassword(user.getPassword());
-        user1.setAddress(user.getAddress());
+        if (user.getName()!=null && !user.getName().equals("")) {
+            user1.setName(user.getName());
+        }
+        if (user.getPassword()!=null && !user.getPassword().equals("")) {
+            user1.setPassword(user.getPassword());
+        }
+        if (user.getAddress()!=null && !user.getAddress().equals("")) {
+            user1.setAddress(user.getAddress());
+        }
         userDao.updateUser(user1);
+    }
+
+    public List<Cart> getCarts() {
+        User user = getCurrentUser();
+        return user.getCart();
     }
 
 

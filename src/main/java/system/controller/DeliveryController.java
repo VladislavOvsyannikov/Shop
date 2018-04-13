@@ -50,4 +50,9 @@ public class DeliveryController {
     public String information() {
         return "/information.html";
     }
+
+    @RequestMapping(value = "/history", method = RequestMethod.GET)
+    public String history() {
+        return "/history.html";
+    }
 }

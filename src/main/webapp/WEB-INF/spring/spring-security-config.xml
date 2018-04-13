@@ -12,6 +12,8 @@
         <!--<intercept-url pattern="/shop/admin/**" access="hasRole('ROLE_ADMIN')"/>-->
 
         <intercept-url pattern="/cart" access="hasRole('ROLE_USER')"/>
+        <intercept-url pattern="/information" access="hasRole('ROLE_USER')"/>
+        <intercept-url pattern="/history" access="hasRole('ROLE_USER')"/>
         <form-login login-page="/login" default-target-url="/home" authentication-failure-url="/error"/>
         <access-denied-handler error-page="/login"/>
         <logout logout-success-url="/home"/>
