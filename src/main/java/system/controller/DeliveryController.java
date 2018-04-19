@@ -55,4 +55,14 @@ public class DeliveryController {
     public String history() {
         return "/history.html";
     }
+
+    @RequestMapping(value = "/manager", method = RequestMethod.GET)
+    public String manager() {
+        return "/manager.html";
+    }
+
+    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    public String admin() {
+        return "/admin.html";
+    }
 }

@@ -57,6 +57,20 @@ app.controller('getController', function ($scope, $http, $location, $window) {
         });
     };
 
+    $scope.getFreeDrivers = function () {
+        var url = "getFreeDrivers";
+        $http.get(url, config).then(function (response) {
+            $scope.drivers = response.data;
+        });
+    };
+
+    $scope.getCartsForDelivery = function () {
+        var url = "getCartsForDelivery";
+        $http.get(url, config).then(function (response) {
+            $scope.cartsForDelivery = response.data;
+        });
+    };
+
 });
 
 app.controller('postController', function ($scope, $http, $location, $window) {

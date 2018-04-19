@@ -4,6 +4,7 @@ package system.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import system.model.Cart;
+import system.model.Driver;
 import system.model.Food;
 import system.model.User;
 import system.service.DeliveryService;
@@ -55,6 +56,15 @@ public class DeliveryRestController {
         return deliveryService.getCarts();
     }
 
+    @RequestMapping(value = "/getFreeDrivers", method = RequestMethod.GET)
+    public List<Driver> getFreeDrivers(){
+        return deliveryService.getFreeDrivers();
+    }
+
+    @RequestMapping(value = "/getCartsForDelivery", method = RequestMethod.GET)
+    public List<Cart> getCartsForDelivery(){
+        return deliveryService.getCartsForDelivery();
+    }
 
 
     @RequestMapping(value = "/submitRegistration", method = RequestMethod.POST)

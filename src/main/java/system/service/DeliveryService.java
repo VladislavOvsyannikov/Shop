@@ -10,6 +10,7 @@ import system.dao.FoodDao;
 import system.dao.TypeDao;
 import system.dao.UserDao;
 import system.model.Cart;
+import system.model.Driver;
 import system.model.Food;
 import system.model.User;
 
@@ -141,6 +142,15 @@ public class DeliveryService {
         return user.getCart();
     }
 
+    public List<Driver> getFreeDrivers() {
+        //надо написать
+        return null;
+    }
+
+    public List<Cart> getCartsForDelivery() {
+        //надо написать
+        return null;
+    }
 
     public List getAllUsers() {
         return userDao.getAllUsers();
