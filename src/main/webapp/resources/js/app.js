@@ -71,6 +71,11 @@ app.controller('getController', function ($scope, $http, $location, $window) {
         });
     };
 
+    $scope.getDate = function (time) {
+        var str = "";
+
+        return str;
+    }
 });
 
 app.controller('postController', function ($scope, $http, $location, $window) {

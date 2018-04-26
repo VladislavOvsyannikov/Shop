@@ -5,10 +5,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import system.dao.CartDao;
-import system.dao.FoodDao;
-import system.dao.TypeDao;
-import system.dao.UserDao;
+import system.dao.*;
 import system.model.Cart;
 import system.model.Driver;
 import system.model.Food;
@@ -29,6 +26,8 @@ public class DeliveryService {
 
     private CartDao cartDao;
 
+    private DriverDao driverDao;
+
     @Autowired
     public void setFoodDao(FoodDao foodDao) {
         this.foodDao = foodDao;
@@ -47,6 +46,11 @@ public class DeliveryService {
     @Autowired
     public void setCartDao(CartDao cartDao) {
         this.cartDao = cartDao;
+    }
+
+    @Autowired
+    public void setDriverDao(DriverDao driverDao) {
+        this.driverDao = driverDao;
     }
 
 
@@ -113,7 +117,8 @@ public class DeliveryService {
     }
 
     public User getCurrentUser() {
-        return userDao.getUser(getUserName());
+        User user = userDao.getUser(getUserName());
+        return user;
     }
 
     public void confirmCart() {
@@ -143,13 +148,20 @@ public class DeliveryService {
     }
 
     public List<Driver> getFreeDrivers() {
-        //надо написать
-        return null;
+        long local = new Date().getTime();
+        long time = 10*60*10;               // 10 minutes
+        List<Driver> drivers = driverDao.getAllDrivers();
+        for (Driver driver:drivers){
+            if (driver.getDate()!=null && driver.getDate().getTime()-time<=local)
+                drivers.remove(driver);
+        }
+        return drivers;
     }
 
+
+
     public List<Cart> getCartsForDelivery() {
-        //надо написать
-        return null;
+        return cartDao.getCarts("confirm");
     }
 
     public List getAllUsers() {

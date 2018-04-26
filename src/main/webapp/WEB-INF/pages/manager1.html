@@ -53,7 +53,45 @@
 
 <!-- Page Content -->
 <div class="container">
-    надо написать менеджера
+
+    <header class="jumbotron my-4">
+        <h6 class="display-4">Менеджер</h6>
+    </header>
+
+    <table class="table borderless bg-color3" ng-init="getCartsForDelivery()">
+        <thead>
+        <tr>
+            <th>Номер</th>
+            <th>Адрес доставки</th>
+            <th>Дата</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="cart in cartsForDelivery">
+            <td>{{cart.id}}</td>
+            <td>{{cart.user.address}}</td>
+            <td>{{getDate(cart.date)}}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table class="table borderless bg-color3" ng-init="getFreeDrivers()">
+        <thead>
+        <tr>
+            <th>Номер</th>
+            <th>Имя водителя</th>
+            <th>Телефон</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="driver in drivers">
+            <td>{{driver.id}}</td>
+            <td>{{driver.name}}</td>
+            <td>{{driver.phone}}</td>
+        </tr>
+        </tbody>
+    </table>
+
 </div>
 </body>
 </html>

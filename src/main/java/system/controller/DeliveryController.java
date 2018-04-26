@@ -56,9 +56,9 @@ public class DeliveryController {
         return "/history.html";
     }
 
-    @RequestMapping(value = "/manager", method = RequestMethod.GET)
+    @RequestMapping(value = "/man", method = RequestMethod.GET)
     public String manager() {
-        return "/manager.html";
+        return "/manager1.html";
     }
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)

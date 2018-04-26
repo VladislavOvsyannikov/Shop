@@ -26,7 +26,7 @@ public class CartDao extends GenericDao<Cart> {
     }
 
     public List<Cart> getCarts(String name) {
-        return getList("from Cart where name=:n", name);
+        return getList("from Cart where status=:n", name);
     }
 
     public void deleteCart(Cart cart) {
