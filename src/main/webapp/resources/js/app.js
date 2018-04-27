@@ -71,9 +71,27 @@ app.controller('getController', function ($scope, $http, $location, $window) {
         });
     };
 
-    $scope.getDate = function (time) {
+    $scope.getDate = function (t) {
         var str = "";
-
+        Date
+        date = new Date();
+        str += date.getHours() + ":";
+        minutes = date.getMinutes();
+        if (minutes - 10 < 0) str += "0";
+        str += minutes+" ";
+        str+=date.getDate()+"/";
+        month=date.getMonth();
+        if(month-10<0) str+=0;
+        str+=month+"/"+date.getFullYear();
+        // Date date1 = new Date();
+        // SimpleDateFormat day = new SimpleDateFormat("dd MMMM YYYY", Locale.ENGLISH);
+        // SimpleDateFormat time = new SimpleDateFormat("hh:mm:ss", Locale.ENGLISH);
+        // long delta = date1.getTime();
+        // long h = (delta - delta % 3600000) / 3600000;
+        // delta -= h * 3600000;
+        // long m = (delta - delta % 60000) / 60000;
+        // str+=h;
+        // str+=m;
         return str;
     }
 });
@@ -86,7 +104,7 @@ app.controller('postController', function ($scope, $http, $location, $window) {
             name: $scope.name,
             password: $scope.password
         };
-        if ($scope.name==null || $scope.password==null)
+        if ($scope.name == null || $scope.password == null)
             $scope.postResultMessage = "Введите имя пользователя и пароль";
         $http.post(url, data, config).then(function (response) {
             $scope.answer = response.data;
@@ -133,9 +151,9 @@ app.controller('postController', function ($scope, $http, $location, $window) {
             address: $scope.address1
         };
         $http.post(url, data, config).then(function (response) {
-            if ((name1!=null && name1 !== "") || (password1!=null && password1 !== "")){
+            if ((name1 != null && name1 !== "") || (password1 != null && password1 !== "")) {
                 $window.location.href = '/logout';
-            }else {
+            } else {
                 $window.location.href = '/information';
             }
         });
@@ -158,8 +176,8 @@ app.controller('postController', function ($scope, $http, $location, $window) {
 
     $scope.getCost = function (foods) {
         var sum = 0;
-        for (i=0; i<foods.length; i++){
-            sum+=foods[i].price;
+        for (i = 0; i < foods.length; i++) {
+            sum += foods[i].price;
         }
         return sum;
     }
