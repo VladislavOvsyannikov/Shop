@@ -57,14 +57,24 @@ public class DeliveryService {
     public boolean addUser(User user) {
         List<User> users = userDao.getUsers(user.getName());
         if (!user.getName().equals("") && !user.getPassword().equals("") && users.isEmpty()) {
-            User user1 = new User();
-            user1.setName(user.getName());
-            user1.setPassword(user.getPassword());
-            user1.setRole("ROLE_USER");
-            userDao.saveUser(user1);
+            User newUser = new User();
+            newUser.setName(user.getName());
+            newUser.setPassword(user.getPassword());
+            newUser.setRole("ROLE_USER");
+            userDao.saveUser(newUser);
             return true;
         }
         return false;
+    }
+
+    public void addDrivetToOrder(int cardid, int driverid) {
+        Driver driver = driverDao.getDriver(driverid);
+        driver.setFree(false);
+        driver.setDate(new Date());
+        Cart cart = cartDao.getCart(cardid);
+        cart.setDriver(driver);
+        cartDao.update(cart);
+        driverDao.update(driver);
     }
 
     public String getUserName() {
@@ -74,8 +84,8 @@ public class DeliveryService {
 
     @Secured("ROLE_USER")
     public void addFoodToCart(int id) {
-        Cart cart1 = getLastCart();
-        if (cart1 == null || cart1.getStatus().equals("confirm")) {
+        Cart lastCart = getLastCart();
+        if (lastCart == null || lastCart.getStatus().equals("confirm")) {
             Cart cart = new Cart();
             cart.setStatus("not confirm");
             cart.setUser(getCurrentUser());
@@ -84,9 +94,9 @@ public class DeliveryService {
             cart.setFoods(foods);
             cartDao.saveCart(cart);
         } else {
-            List<Food> foods = cart1.getFoods();
+            List<Food> foods = lastCart.getFoods();
             foods.add(getFood(id));
-            cartDao.update(cart1);
+            cartDao.update(lastCart);
         }
     }
 
@@ -103,17 +113,12 @@ public class DeliveryService {
 
     public Cart getLastCart() {
         List<Cart> carts = getCurrentUser().getCart();
-        if (carts.size() != 0) {
-            int max = -1;
-            int maxind = 0;
-            for (int i = 0; i < carts.size(); i++) {
-                if (carts.get(i).getId() > max) {
-                    max = carts.get(i).getId();
-                    maxind = i;
-                }
+        for (Cart cart : carts) {
+            if (cart.getStatus().equals("not confirm") || cart.getStatus().equals("")) {
+                return cart;
             }
-            return carts.get(maxind);
-        } else return null;
+        }
+        return null;
     }
 
     public User getCurrentUser() {
@@ -129,17 +134,17 @@ public class DeliveryService {
     }
 
     public void updateUser(User user) {
-        User user1 = userDao.getUserId(user.getId());
-        if (user.getName()!=null && !user.getName().equals("")) {
-            user1.setName(user.getName());
+        User existedUser = userDao.getUserId(user.getId());
+        if (user.getName() != null && !user.getName().equals("")) {
+            existedUser.setName(user.getName());
         }
-        if (user.getPassword()!=null && !user.getPassword().equals("")) {
-            user1.setPassword(user.getPassword());
+        if (user.getPassword() != null && !user.getPassword().equals("")) {
+            existedUser.setPassword(user.getPassword());
         }
-        if (user.getAddress()!=null && !user.getAddress().equals("")) {
-            user1.setAddress(user.getAddress());
+        if (user.getAddress() != null && !user.getAddress().equals("")) {
+            existedUser.setAddress(user.getAddress());
         }
-        userDao.updateUser(user1);
+        userDao.updateUser(existedUser);
     }
 
     public List<Cart> getCarts() {
@@ -149,15 +154,14 @@ public class DeliveryService {
 
     public List<Driver> getFreeDrivers() {
         long local = new Date().getTime();
-        long time = 10*60*10;               // 10 minutes
+        long time = 10 * 60 * 10;               // 10 minutes
         List<Driver> drivers = driverDao.getAllDrivers();
-        for (Driver driver:drivers){
-            if (driver.getDate()!=null && driver.getDate().getTime()-time<=local)
+        for (Driver driver : drivers) {
+            if (driver.getDate() != null && driver.getDate().getTime() - time <= local)
                 drivers.remove(driver);
         }
         return drivers;
     }
-
 
 
     public List<Cart> getCartsForDelivery() {

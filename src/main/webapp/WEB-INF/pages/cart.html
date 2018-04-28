@@ -61,7 +61,7 @@
     </div>
 </nav>
 
-<div ng-if="getCost(cart.foods)==0 || cart.status!='not confirm'" class="container">
+<div ng-if="getCost(cart.foods)==0 || cart.status!='not confirm' || cart == ''" class="container">
     <header class="jumbotron my-4">
         <h6 class="display-4">Ваша корзина пуста</h6>
     </header>
