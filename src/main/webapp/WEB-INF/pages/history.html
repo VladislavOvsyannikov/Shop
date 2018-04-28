@@ -19,7 +19,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive" ng-init="getCurrentUser()">
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ml-auto" ng-init="getUsername()">
                 <li class="nav-item active">
                     <a class="nav-link" href="http://localhost:8080/home">Главная</a>
                 </li>
@@ -31,7 +31,7 @@
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Личный кабинет
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown" ng-if="user.name=='anonymousUser'">
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown" ng-if="username=='anonymousUser'">
                         <a class="dropdown-item" href="http://localhost:8080/login">Вход</a>
                         <a class="dropdown-item" href="http://localhost:8080/registration">Регистрация</a>
                     </div>
