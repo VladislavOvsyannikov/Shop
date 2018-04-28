@@ -2,7 +2,6 @@ package system.dao;
 
 import org.springframework.stereotype.Repository;
 import system.model.Cart;
-import system.model.User;
 
 import java.util.List;
 
@@ -13,8 +12,8 @@ public class CartDao extends GenericDao<Cart> {
         return getAll("Cart");
     }
 
-    public Cart getCart(String name) {
-        return getElement("from Cart where name=:n", name);
+    public Cart getCart(int id) {
+        return getElement("from Cart where id=:n", id);
     }
 
     public void saveCart(Cart cart) {

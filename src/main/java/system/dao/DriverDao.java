@@ -1,9 +1,7 @@
 package system.dao;
 
 import org.springframework.stereotype.Repository;
-import system.model.Cart;
 import system.model.Driver;
-import system.model.User;
 
 import java.util.List;
 
@@ -14,8 +12,8 @@ public class DriverDao extends GenericDao<Driver> {
         return getAll("Driver");
     }
 
-    public Driver getDriver(String name){
-        return getElement("from Driver where name=:n", name);
+    public Driver getDriver(int id){
+        return getElement("from Driver where id=:n", id);
     }
 
     public void saveDriver(Driver driver){
