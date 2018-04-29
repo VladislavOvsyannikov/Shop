@@ -72,28 +72,9 @@ app.controller('getController', function ($scope, $http, $location, $window) {
     };
 
     $scope.getDate = function (t) {
-        var str = "";
-        Date
-        date = new Date();
-        str += date.getHours() + ":";
-        minutes = date.getMinutes();
-        if (minutes - 10 < 0) str += "0";
-        str += minutes+" ";
-        str+=date.getDate()+"/";
-        month=date.getMonth();
-        if(month-10<0) str+=0;
-        str+=month+"/"+date.getFullYear();
-        // Date date1 = new Date();
-        // SimpleDateFormat day = new SimpleDateFormat("dd MMMM YYYY", Locale.ENGLISH);
-        // SimpleDateFormat time = new SimpleDateFormat("hh:mm:ss", Locale.ENGLISH);
-        // long delta = date1.getTime();
-        // long h = (delta - delta % 3600000) / 3600000;
-        // delta -= h * 3600000;
-        // long m = (delta - delta % 60000) / 60000;
-        // str+=h;
-        // str+=m;
-        return str;
+        return new Date(t).toLocaleString();
     }
+
 });
 
 app.controller('postController', function ($scope, $http, $location, $window) {
