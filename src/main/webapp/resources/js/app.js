@@ -161,6 +161,14 @@ app.controller('postController', function ($scope, $http, $location, $window) {
             sum += foods[i].price;
         }
         return sum;
-    }
+    };
+
+    $scope.addCartsToDriver = function () {
+        var url = "addCartsToDriver";
+        var data = id + " " + $scope.ids;
+        $http.post(url, data).then(function (response) {
+            $window.location.href = '/man';
+        });
+    };
 
 });

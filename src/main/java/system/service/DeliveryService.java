@@ -67,14 +67,15 @@ public class DeliveryService {
         return false;
     }
 
-    public void addDrivetToOrder(int cardid, int driverid) {
-        Driver driver = driverDao.getDriver(driverid);
-        driver.setFree(false);
-        driver.setDate(new Date());
-        Cart cart = cartDao.getCart(cardid);
-        cart.setDriver(driver);
-        cartDao.update(cart);
-        driverDao.update(driver);
+    public void addCartsToDriver(String data) {
+        String[] array = data.split(" ");
+//        Driver driver = driverDao.getDriver(driverid);
+//        driver.setFree(false);
+//        driver.setDate(new Date());
+//        Cart cart = cartDao.getCart(cardid);
+//        cart.setDriver(driver);
+//        cartDao.update(cart);
+//        driverDao.update(driver);
     }
 
     public String getUserName() {

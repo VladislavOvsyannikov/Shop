@@ -91,4 +91,9 @@ public class DeliveryRestController {
     public void updateUser(@RequestBody User user){
         deliveryService.updateUser(user);
     }
+
+    @RequestMapping(value = "/addCartsToDriver", method = RequestMethod.POST)
+    public void addCartsToDriver(@RequestBody String data){
+        deliveryService.addCartsToDriver(data);
+    }
 }
