@@ -150,6 +150,7 @@ public class DeliveryService {
 
     public List<Cart> getCarts() {
         User user = getCurrentUser();
+        //сюда надо дописать обновление
         return user.getCart();
     }
 
@@ -164,10 +165,10 @@ public class DeliveryService {
         return drivers;
     }
 
-
     public List<Cart> getCartsForDelivery() {
         return cartDao.getCarts("confirm");
     }
+
 
     public List getAllUsers() {
         return userDao.getAllUsers();
