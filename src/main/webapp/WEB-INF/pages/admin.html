@@ -17,7 +17,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-color fixed-top">
     <div class="container">
         <a class="navbar-brand" href="#">Delivery</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive" ng-init="getCurrentUser()">
@@ -65,7 +66,123 @@
 
 <!-- Page Content -->
 <div class="container">
-    надо написать админа
+    <header class="jumbotron my-4">
+        <h6 class="display-4">Администратор</h6>
+    </header>
+
+
+    <table class="table borderless bg-color3" ng-init="getUsers()">
+        <thead>
+        <tr>
+            <th>user_id</th>
+            <th>Ник</th>
+            <th>Адрес</th>
+            <th></th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="user in users">
+            <td>{{user.id}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.address}}</td>
+            <td>
+                <form name="post" ng-submit="deleteUser()">             <!--doesn't work-->
+                    <button type="submit" data-ng-click="setId(user.id)" class="btn btn-danger">Удалить
+                    </button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table class="table borderless bg-color3" ng-init="getFreeDrivers()">
+        <thead>
+        <tr>
+            <th>Номер</th>
+            <th>Имя водителя</th>
+            <th>Телефон</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="driver in drivers" ng-controller="postController">
+            <td>{{driver.id}}</td>
+            <td>{{driver.name}}</td>
+            <td>{{driver.phone}}</td>
+            <td>
+                <form name="post" ng-submit="deleteDriver()">             <!--doesn't work-->
+                    <button type="submit" data-ng-click="setId(driver.id)" class="btn btn-danger">Удалить
+                    </button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+    <table class="table borderless bg-color3">
+        <thead>
+        <th>Добавление водителя</th>
+        </thead>
+        <thead>
+        <tr>
+            <th>Номер</th>
+            <th>Имя водителя</th>
+            <th>Телефон</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <td>3</td>
+        <td>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" ng-model="ids">
+            </div>
+        </td>
+        <td>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" ng-model="ids">
+            </div>
+        </td>
+        <td>
+            <form name="post" ng-submit="addDriver()">            <!--there's no such function-->
+                <button type="submit" data-ng-click="setId(driver.id)" class="btn btn-success">Добавить водителя
+                </button>
+            </form>
+        </td>
+        </tbody>
+    </table>
+
+    <table class="table borderless bg-color3">
+        <thead>
+        <th>Добавление манагера</th>
+        </thead>
+        <thead>
+        <tr>
+            <th>Номер</th>
+            <th>Имя манагера</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <td>3</td>
+        <td>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" ng-model="ids">
+            </div>
+        </td>
+        <td>
+            <form name="post" ng-submit="addManager()">                           <!--there's no such function-->
+                <button type="submit" data-ng-click="setId(driver.id)" class="btn btn-success">Добавить манагера
+                </button>
+            </form>
+        </td>
+        </tbody>
+    </table>
+
+
+
 </div>
 </body>
 </html>

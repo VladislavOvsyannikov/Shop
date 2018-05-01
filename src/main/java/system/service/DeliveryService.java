@@ -112,6 +112,19 @@ public class DeliveryService {
         cartDao.update(lastCart);
     }
 
+    public void deleteUser(int id) {
+
+        User user = userDao.getUser(id);
+        userDao.deleteUser(user);
+
+    }
+
+    public void deleteDriver(int id) {
+        Driver driver = driverDao.getDriver(id);
+        driverDao.deleteDriver(driver);
+    }
+
+
     public Cart getLastCart() {
         List<Cart> carts = getCurrentUser().getCart();
         for (Cart cart : carts) {
@@ -135,7 +148,7 @@ public class DeliveryService {
     }
 
     public void updateUser(User user) {
-        User existedUser = userDao.getUserId(user.getId());
+        User existedUser = userDao.getUser(user.getId());
         if (user.getName() != null && !user.getName().equals("")) {
             existedUser.setName(user.getName());
         }
@@ -185,4 +198,6 @@ public class DeliveryService {
     public List getAllTypes() {
         return typeDao.getAllTypes();
     }
+
+
 }

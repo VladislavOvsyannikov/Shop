@@ -121,6 +121,26 @@ app.controller('postController', function ($scope, $http, $location, $window) {
         });
     };
 
+    $scope.deleteUser = function () {                   //doesn't work
+        var url = "deleteUser";
+        var data = {
+            id: id
+        };
+        $http.post(url, data, config).then(function (response) {
+            $window.location.href = '/admin';
+        });
+    };
+
+    $scope.deleteDriver = function () {                   //doesn't work
+        var url = "deleteDriver";
+        var data = {
+            id: id
+        };
+        $http.post(url, data, config).then(function (response) {
+            $window.location.href = '/admin';
+        });
+    };
+
     $scope.updateUser = function () {
         var url = "updateUser";
         var name1 = $scope.name;

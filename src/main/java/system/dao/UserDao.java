@@ -16,7 +16,7 @@ public class UserDao extends GenericDao<User> {
         return getElement("from User where name=:n", name);
     }
 
-    public User getUserId(int id){
+    public User getUser(int id){
         return getElement("from User where id=:n", id);
     }
 

@@ -82,6 +82,16 @@ public class DeliveryRestController {
         deliveryService.deleteFromCart(food.getId());
     }
 
+    @RequestMapping(value = "/deleteUser", method = RequestMethod.POST)
+    public void deleteUser(@RequestBody User user){
+        deliveryService.deleteUser(user.getId());
+    }
+
+    @RequestMapping(value = "/deleteDriver", method = RequestMethod.POST)
+    public void deleteDriver(@RequestBody Driver driver){
+        deliveryService.deleteDriver(driver.getId());
+    }
+
     @RequestMapping(value = "/confirmCart", method = RequestMethod.POST)
     public void confirmCart(){
         deliveryService.confirmCart();
