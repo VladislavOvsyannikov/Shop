@@ -109,19 +109,28 @@ public class DeliveryService {
         } else {
             foods.clear();
         }
+//        foods.remove(getFood(id));
         cartDao.update(lastCart);
     }
 
     public void deleteUser(int id) {
-
+//        List<User> users = getAllUsers();
+//        users.remove(id);
         User user = userDao.getUser(id);
         userDao.deleteUser(user);
 
     }
 
     public void deleteDriver(int id) {
-        Driver driver = driverDao.getDriver(id);
-        driverDao.deleteDriver(driver);
+//        Driver driver = driverDao.getDriver(id);
+//        driverDao.deleteDriver(driver);
+        List<Driver> drivers = getAllDrivers();
+        drivers.remove(id);
+    }
+
+    private List<Driver> getAllDrivers() {
+        List<Driver> drivers = driverDao.getAllDrivers();
+        return drivers;
     }
 
 

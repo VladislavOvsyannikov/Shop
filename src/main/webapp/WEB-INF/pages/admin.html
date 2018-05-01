@@ -136,13 +136,17 @@
         <tbody>
         <td>3</td>
         <td>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" ng-model="ids">
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" ng-model="driver_name">
+                </div>
             </div>
         </td>
         <td>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" ng-model="ids">
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" ng-model="phone">
+                </div>
             </div>
         </td>
         <td>
@@ -165,22 +169,26 @@
             <th></th>
         </tr>
         </thead>
-        <tbody>
         <td>3</td>
-        <td>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" ng-model="ids">
-            </div>
-        </td>
-        <td>
-            <form name="post" ng-submit="addManager()">                           <!--there's no such function-->
-                <button type="submit" data-ng-click="setId(driver.id)" class="btn btn-success">Добавить манагера
-                </button>
-            </form>
-        </td>
-        </tbody>
-    </table>
+        <form ng-submit="addManager()">
+            <td>
+                <div class="form-group row">
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="manager_name">
+                    </div>
+                </div>
 
+            </td>
+            <td>
+                <div class="form-group row">
+                    <div class="offset-sm-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary" data-ng-click="setId(user.id)">Добавить манагера
+                        </button>
+                    </div>
+                </div>
+            </td>
+        </form>
+    </table>
 
 
 </div>
