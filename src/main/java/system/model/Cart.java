@@ -27,6 +27,7 @@ public class Cart implements Serializable {
     @JoinColumn(name = "driver_id")
     private Driver driver;
 
+//    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "foodincart",

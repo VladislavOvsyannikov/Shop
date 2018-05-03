@@ -24,6 +24,13 @@ app.controller('getController', function ($scope, $http, $location, $window) {
         });
     };
 
+    $scope.getDrivers = function () {
+        var url = "getDrivers";
+        $http.get(url, config).then(function (response) {
+            $scope.drivers = response.data;
+        });
+    };
+
     $scope.getTypes = function () {
         var url = "getTypes";
         $http.get(url, config).then(function (response) {
@@ -98,8 +105,8 @@ app.controller('postController', function ($scope, $http, $location, $window) {
     };
 
     var id;
-    $scope.setId = function (foodId) {
-        id = foodId;
+    $scope.setId = function (Id) {
+        id = Id;
     };
     $scope.addFoodToCart = function () {
         var url = "addFoodToCart";
@@ -121,7 +128,7 @@ app.controller('postController', function ($scope, $http, $location, $window) {
         });
     };
 
-    $scope.deleteUser = function () {                   //doesn't work
+    $scope.deleteUser = function () {
         var url = "deleteUser";
         var data = {
             id: id
@@ -131,7 +138,7 @@ app.controller('postController', function ($scope, $http, $location, $window) {
         });
     };
 
-    $scope.deleteDriver = function () {                   //doesn't work
+    $scope.deleteDriver = function () {
         var url = "deleteDriver";
         var data = {
             id: id
@@ -188,6 +195,28 @@ app.controller('postController', function ($scope, $http, $location, $window) {
         var data = id + " " + $scope.ids;
         $http.post(url, data).then(function (response) {
             $window.location.href = '/man';
+        });
+    };
+
+    $scope.addDriver = function () {
+        var url = "addDriver";
+        var data = {
+            name: $scope.name,
+            phone: $scope.phone
+        };
+        $http.post(url, data, config).then(function (response) {
+            $window.location.href = '/admin';
+        });
+    };
+
+    $scope.addManager = function () {
+        var url = "addManager";
+        var data = {
+            name: $scope.name,
+            password: $scope.password
+        };
+        $http.post(url, data, config).then(function (response) {
+            $window.location.href = '/admin';
         });
     };
 

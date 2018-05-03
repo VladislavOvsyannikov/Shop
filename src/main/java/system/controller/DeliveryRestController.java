@@ -36,6 +36,11 @@ public class DeliveryRestController {
         return deliveryService.getAllUsers();
     }
 
+    @RequestMapping(value = "/getDrivers", method = RequestMethod.GET)
+    public List<User> getDrivers(){
+        return deliveryService.getAllDrivers();
+    }
+
     @RequestMapping(value = "/getFoods", method = RequestMethod.GET)
     public List<User> getFoods(){
         return deliveryService.getAllFoods();
@@ -105,5 +110,15 @@ public class DeliveryRestController {
     @RequestMapping(value = "/addCartsToDriver", method = RequestMethod.POST)
     public void addCartsToDriver(@RequestBody String data){
         deliveryService.addCartsToDriver(data);
+    }
+
+    @RequestMapping(value = "/addDriver", method = RequestMethod.POST)
+    public void addDriver(@RequestBody Driver driver){
+        deliveryService.addDriver(driver);
+    }
+
+    @RequestMapping(value = "/addManager", method = RequestMethod.POST)
+    public void addManager(@RequestBody User user){
+        deliveryService.addManager(user);
     }
 }

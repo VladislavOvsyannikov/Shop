@@ -109,28 +109,18 @@ public class DeliveryService {
         } else {
             foods.clear();
         }
-//        foods.remove(getFood(id));
         cartDao.update(lastCart);
     }
 
     public void deleteUser(int id) {
-//        List<User> users = getAllUsers();
-//        users.remove(id);
         User user = userDao.getUser(id);
-        userDao.deleteUser(user);
-
+        //надо написать и проверить, что при удалении стираются все корзины юзера,
+        // а за корзинами стираются все соответствующие записи в таблице foodincart
     }
 
     public void deleteDriver(int id) {
-//        Driver driver = driverDao.getDriver(id);
-//        driverDao.deleteDriver(driver);
-        List<Driver> drivers = getAllDrivers();
-        drivers.remove(id);
-    }
-
-    private List<Driver> getAllDrivers() {
-        List<Driver> drivers = driverDao.getAllDrivers();
-        return drivers;
+        Driver driver = driverDao.getDriver(id);
+        //надо написать, походу могут быть трудности, если этот водитель доставляет заказ в данный момент
     }
 
 
@@ -191,6 +181,14 @@ public class DeliveryService {
         return cartDao.getCarts("confirm");
     }
 
+    public void addDriver(Driver driver) {
+        //надо написать, лучше сделать проверку на пустые входящие данные (name, phone)
+    }
+
+    public void addManager(User user) {
+        //надо написать, лучше сделать проверку на пустые входящие данные (name, password)
+    }
+
 
     public List getAllUsers() {
         return userDao.getAllUsers();
@@ -208,5 +206,7 @@ public class DeliveryService {
         return typeDao.getAllTypes();
     }
 
-
+    public List getAllDrivers(){
+        return driverDao.getAllDrivers();
+    }
 }
