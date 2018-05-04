@@ -21,7 +21,7 @@ public class Driver implements Serializable {
     @Column(name = "free", nullable = false)
     private boolean free;
 
-    @Column(name = "date", nullable = false)
+    @Column(name = "date")
     private Date date;
 
     public int getId() {

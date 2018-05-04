@@ -12,6 +12,7 @@ import system.model.Food;
 import system.model.User;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -27,6 +28,8 @@ public class DeliveryService {
     private CartDao cartDao;
 
     private DriverDao driverDao;
+
+    private long time = 10 * 60 * 10;   // 10 minutes
 
     @Autowired
     public void setFoodDao(FoodDao foodDao) {
@@ -68,14 +71,17 @@ public class DeliveryService {
     }
 
     public void addCartsToDriver(String data) {
-        String[] array = data.split(" ");
-//        Driver driver = driverDao.getDriver(driverid);
-//        driver.setFree(false);
-//        driver.setDate(new Date());
-//        Cart cart = cartDao.getCart(cardid);
-//        cart.setDriver(driver);
-//        cartDao.update(cart);
-//        driverDao.update(driver);
+        int[] array = Arrays.stream(data.split(" ")).mapToInt(Integer::parseInt).toArray();
+        int driverId = array[0];
+        Driver driver = driverDao.getDriver(driverId);
+        driver.setDate(new Date());
+        driverDao.update(driver);
+        for (int i=1; i<array.length; i++){
+            Cart cart = cartDao.getCart(array[i]);
+            cart.setDriver(driver);
+            cart.setStatus("in delivery");
+            cartDao.update(cart);
+        }
     }
 
     public String getUserName() {
@@ -114,13 +120,17 @@ public class DeliveryService {
 
     public void deleteUser(int id) {
         User user = userDao.getUser(id);
-        //надо написать и проверить, что при удалении стираются все корзины юзера,
-        // а за корзинами стираются все соответствующие записи в таблице foodincart
+        userDao.deleteUser(user);
+        // вроде работает
     }
 
     public void deleteDriver(int id) {
         Driver driver = driverDao.getDriver(id);
-        //надо написать, походу могут быть трудности, если этот водитель доставляет заказ в данный момент
+        long local = new Date().getTime();
+        if (driver.getDate()==null || driver.getDate().getTime() + time <= local){
+            driverDao.deleteDriver(driver);
+        }
+        // ошибка, если этот водитель есть в driver_id в cart
     }
 
 
@@ -162,16 +172,25 @@ public class DeliveryService {
 
     public List<Cart> getCarts() {
         User user = getCurrentUser();
-        //сюда надо дописать обновление
+        List<Cart> carts = user.getCart();
+        for (Cart cart:carts){
+            if (cart.getStatus().equals("in delivery")){
+                Driver driver = cart.getDriver();
+                long local = new Date().getTime();
+                if (driver.getDate().getTime() + time <= local){
+                    cart.setStatus("delivered");
+                    cartDao.updateCart(cart);
+                }
+            }
+        }
         return user.getCart();
     }
 
     public List<Driver> getFreeDrivers() {
         long local = new Date().getTime();
-        long time = 10 * 60 * 10;               // 10 minutes
         List<Driver> drivers = driverDao.getAllDrivers();
         for (Driver driver : drivers) {
-            if (driver.getDate() != null && driver.getDate().getTime() - time <= local)
+            if (driver.getDate() != null && driver.getDate().getTime() + time > local)
                 drivers.remove(driver);
         }
         return drivers;
@@ -182,11 +201,17 @@ public class DeliveryService {
     }
 
     public void addDriver(Driver driver) {
-        //надо написать, лучше сделать проверку на пустые входящие данные (name, phone)
+        if (driver.getName()!=null && driver.getPhone()!=null){
+            driver.setFree(true);
+            driverDao.saveDriver(driver);
+        }
     }
 
     public void addManager(User user) {
-        //надо написать, лучше сделать проверку на пустые входящие данные (name, password)
+        if (user.getName()!=null && user.getPassword()!=null){
+            user.setRole("ROLE_MANAGER");
+            userDao.saveUser(user);
+        }
     }
 
 
