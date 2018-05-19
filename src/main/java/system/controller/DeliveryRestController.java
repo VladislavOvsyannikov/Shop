@@ -61,6 +61,11 @@ public class DeliveryRestController {
         return deliveryService.getCarts();
     }
 
+    @RequestMapping(value = "/getAllCarts", method = RequestMethod.GET)
+    public List<Cart> getAllCarts(){
+        return deliveryService.getAllCarts();
+    }
+
     @RequestMapping(value = "/getFreeDrivers", method = RequestMethod.GET)
     public List<Driver> getFreeDrivers(){
         return deliveryService.getFreeDrivers();
@@ -110,6 +115,11 @@ public class DeliveryRestController {
     @RequestMapping(value = "/addCartsToDriver", method = RequestMethod.POST)
     public void addCartsToDriver(@RequestBody String data){
         deliveryService.addCartsToDriver(data);
+    }
+
+    @RequestMapping(value = "/deleteFromUserCart", method = RequestMethod.POST)
+    public void deleteFromUserCart(@RequestBody String data){
+        deliveryService.deleteFromUserCart(data);
     }
 
     @RequestMapping(value = "/addDriver", method = RequestMethod.POST)

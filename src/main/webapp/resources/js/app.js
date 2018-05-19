@@ -64,6 +64,13 @@ app.controller('getController', function ($scope, $http, $location, $window) {
         });
     };
 
+    $scope.getAllCarts = function () {
+        var url = "getAllCarts";
+        $http.get(url, config).then(function (response) {
+            $scope.carts = response.data;
+        });
+    };
+
     $scope.getFreeDrivers = function () {
         var url = "getFreeDrivers";
         $http.get(url, config).then(function (response) {
@@ -80,7 +87,26 @@ app.controller('getController', function ($scope, $http, $location, $window) {
 
     $scope.getDate = function (t) {
         return new Date(t).toLocaleString();
-    }
+    };
+
+    $scope.getStatus = function (status) {
+        switch (status){
+            case 'confirm':
+                return "Заказ обрабатывается";
+            case 'in delivery':
+                return "Заказ доставляется";
+            case 'delivered':
+                return "Заказ доставлен";
+        }
+    };
+
+    $scope.getCost = function (foods) {
+        var sum = 0;
+        for (i = 0; i < foods.length; i++) {
+            sum += foods[i].price;
+        }
+        return sum;
+    };
 
 });
 
@@ -108,6 +134,7 @@ app.controller('postController', function ($scope, $http, $location, $window) {
     $scope.setId = function (Id) {
         id = Id;
     };
+
     $scope.addFoodToCart = function () {
         var url = "addFoodToCart";
         var data = {
@@ -125,6 +152,19 @@ app.controller('postController', function ($scope, $http, $location, $window) {
         };
         $http.post(url, data, config).then(function (response) {
             $window.location.href = '/cart';
+        });
+    };
+
+    var cartId;
+    $scope.setCartId = function (CartId, FoodId) {
+        cartId = CartId + " " + FoodId;
+    };
+
+    $scope.deleteFromUserCart = function () {
+        var url = "deleteFromUserCart";
+        var data = cartId;
+        $http.post(url, data, config).then(function (response) {
+            $window.location.href = '/man';
         });
     };
 
@@ -180,14 +220,6 @@ app.controller('postController', function ($scope, $http, $location, $window) {
 
     $scope.goToInformation = function () {
         $window.location.href = '/information';
-    };
-
-    $scope.getCost = function (foods) {
-        var sum = 0;
-        for (i = 0; i < foods.length; i++) {
-            sum += foods[i].price;
-        }
-        return sum;
     };
 
     $scope.addCartsToDriver = function () {

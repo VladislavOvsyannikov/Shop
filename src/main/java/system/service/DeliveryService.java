@@ -118,10 +118,23 @@ public class DeliveryService {
         cartDao.update(lastCart);
     }
 
+    public void deleteFromUserCart(String data) {
+        int cartId = Arrays.stream(data.split(" ")).mapToInt(Integer::parseInt).toArray()[0];
+        int foodId = Arrays.stream(data.split(" ")).mapToInt(Integer::parseInt).toArray()[1];
+        Cart cart = cartDao.getCart(cartId);
+        List<Food> foods = cart.getFoods();
+        if (foods.size() != 1) {
+            foods.remove(getFood(foodId));
+            cartDao.update(cart);
+        } else {
+            foods.clear();
+            cartDao.deleteCart(cart);
+        }
+    }
+
     public void deleteUser(int id) {
         User user = userDao.getUser(id);
         userDao.deleteUser(user);
-        // вроде работает
     }
 
     public void deleteDriver(int id) {
@@ -132,7 +145,6 @@ public class DeliveryService {
         }
         // ошибка, если этот водитель есть в driver_id в cart
     }
-
 
     public Cart getLastCart() {
         List<Cart> carts = getCurrentUser().getCart();
@@ -233,5 +245,9 @@ public class DeliveryService {
 
     public List getAllDrivers(){
         return driverDao.getAllDrivers();
+    }
+
+    public List getAllCarts(){
+        return cartDao.getAllCarts();
     }
 }

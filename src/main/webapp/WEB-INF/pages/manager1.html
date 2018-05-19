@@ -71,22 +71,45 @@
         <h6 class="display-4">Менеджер</h6>
     </header>
 
-    <table class="table borderless bg-color3" ng-init="getCartsForDelivery()">
+    <table class="table borderless bg-color3" ng-init="getCartsForDelivery()" ng-controller="postController">
         <thead>
         <tr>
             <th>Номер</th>
             <th>Адрес доставки</th>
             <th>Дата</th>
+            <th></th>
         </tr>
         </thead>
-        <tbody>
-        <tr ng-repeat="cart in cartsForDelivery">
-            <td>{{cart.id}}</td>
-            <td>{{cart.user.address}}</td>
-            <td>{{getDate(cart.date)}}</td>
-        </tr>
+        <tbody ng-repeat="cart in cartsForDelivery">
+            <tr>
+                <td>{{cart.id}}</td>
+                <td>{{cart.user.address}}</td>
+                <td>{{getDate(cart.date)}}</td>
+                <!--<td>-->
+                    <!--<a class="btn btn-warning" data-toggle="collapse" href="#collapse{{cart.id}}"-->
+                       <!--role="button" aria-expanded="false" aria-controls="collapse{{cart.id}}">-->
+                        <!--Изменить-->
+                    <!--</a>-->
+                <!--</td>-->
+            </tr>
+            <!--<tr ng-repeat="food in cart.foods" class="collapse" id="collapse{{cart.id}}">-->
+            <tr ng-repeat="food in cart.foods">
+                <td> </td>
+                <td>{{food.name}}</td>
+                <td>{{food.price}} руб.</td>
+                <td>
+                    <div>
+                        <form name="post" ng-submit="deleteFromUserCart()">
+                            <button type="submit" ng-click="setCartId(cart.id, food.id)"
+                                    class="btn btn-danger">Удалить
+                            </button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
         </tbody>
     </table>
+
 
     <table class="table borderless bg-color3" ng-init="getFreeDrivers()">
         <thead>
@@ -117,6 +140,46 @@
         </tr>
         </tbody>
     </table>
+
+    <p>
+        <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample"
+           role="button" aria-expanded="false" aria-controls="collapseExample">
+            История всех заказов
+        </a>
+    </p>
+    <div class="collapse" id="collapseExample">
+        <div class="card card-body bg-color4" ng-init="getAllCarts()">
+            <div ng-repeat="cart in carts" ng-if="cart.status != 'not confirm'">
+                <p>
+                    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample{{cart.id}}"
+                       role="button" aria-expanded="false" aria-controls="collapseExample{{cart.id}}">
+                        Детали заказа номер {{cart.id}}:
+                    </a>
+                </p>
+                <div class="collapse" id="collapseExample{{cart.id}}">
+                    <table class="table borderless bg-color3">
+                        <thead>
+                        <tr>
+                            <th>Наименование товара</th>
+                            <th>Цена</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="food in cart.foods">
+                            <td>{{food.name}}</td>
+                            <td>{{food.price}} руб.</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <h5 class="card-text text-primary">Пользователь: {{cart.user.name}}</h5>
+                    <h5 class="card-text text-danger">Общая стоимость: {{getCost(cart.foods)}} руб.</h5>
+                    <h5 class="card-text text-primary">Дата заказа: {{getDate(cart.date)}}</h5>
+                    <h5 class="card-text text-success">Статус: {{getStatus(cart.status)}}</h5>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 </body>

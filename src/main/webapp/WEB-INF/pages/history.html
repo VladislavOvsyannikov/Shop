@@ -82,7 +82,8 @@
                 </tbody>
             </table>
             <h5 class="card-text text-danger">Общая стоимость: {{getCost(cart.foods)}} руб.</h5>
-            <h5 class="card-text text-success">Статус: {{cart.status}}</h5>
+            <h5 class="card-text text-primary">Дата заказа: {{getDate(cart.date)}}</h5>
+            <h5 class="card-text text-success">Статус: {{getStatus(cart.status)}}</h5>
             <br>
         </div>
     </div>
