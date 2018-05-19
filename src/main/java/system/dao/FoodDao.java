@@ -1,10 +1,7 @@
 package system.dao;
 
 import org.springframework.stereotype.Repository;
-import system.model.Cart;
-import system.model.Driver;
 import system.model.Food;
-import system.model.User;
 
 import java.util.List;
 

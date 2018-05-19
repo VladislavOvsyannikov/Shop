@@ -198,13 +198,21 @@ app.controller('postController', function ($scope, $http, $location, $window) {
             password: password1,
             address: $scope.address1
         };
-        $http.post(url, data, config).then(function (response) {
-            if ((name1 != null && name1 !== "") || (password1 != null && password1 !== "")) {
-                $window.location.href = '/logout';
-            } else {
-                $window.location.href = '/information';
-            }
-        });
+        if($scope.address1 == null) {
+            document.getElementById("blabla").innerHTML = "*Поле 'Адрес' при изменении не может быть пуcтым.";
+            document.getElementById("blabla").style.color = "#ff0000";
+        }
+        else {
+            document.getElementById("blabla").innerHTML = "Данные изменены";
+            document.getElementById("blabla").style.color = "#000000";
+            $http.post(url, data, config).then(function (response) {
+                if ((name1 != null && name1 !== "") || (password1 != null && password1 !== "")) {
+                    $window.location.href = '/logout';
+                } else {
+                    $window.location.href = '/information';
+                }
+            });
+        }
     };
 
     $scope.confirmCart = function () {
