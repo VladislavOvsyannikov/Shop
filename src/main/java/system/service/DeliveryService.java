@@ -30,7 +30,7 @@ public class DeliveryService {
 
     private DriverDao driverDao;
 
-    private long time = 10 * 60 * 10;   // 10 minutes
+    private long time = 10 * 60 * 1000;   // 10 minutes
 
     @Autowired
     public void setFoodDao(FoodDao foodDao) {
@@ -144,7 +144,6 @@ public class DeliveryService {
         if (driver.getDate()==null || driver.getDate().getTime() + time <= local){
             driverDao.deleteDriver(driver);
         }
-        // ошибка, если этот водитель есть в driver_id в cart
     }
 
     public Cart getLastCart() {
