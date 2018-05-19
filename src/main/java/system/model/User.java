@@ -68,8 +68,7 @@ public class User implements Serializable {
     }
 
     public void setPassword(String password) {
-        String pwd = DeliveryService.toMD5(password);
-        this.password = pwd;
+        this.password = password;
     }
 
     public String getRole() {

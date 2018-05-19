@@ -63,7 +63,7 @@ public class DeliveryService {
         if (!user.getName().equals("") && !user.getPassword().equals("") && users.isEmpty()) {
             User newUser = new User();
             newUser.setName(user.getName());
-            newUser.setPassword(user.getPassword());
+            newUser.setPassword(DeliveryService.toMD5(user.getPassword()));
             newUser.setRole("ROLE_USER");
             userDao.saveUser(newUser);
             return true;
@@ -175,7 +175,7 @@ public class DeliveryService {
             existedUser.setName(user.getName());
         }
         if (user.getPassword() != null && !user.getPassword().equals("")) {
-            existedUser.setPassword(user.getPassword());
+            existedUser.setPassword(DeliveryService.toMD5(user.getPassword()));
         }
         if (user.getAddress() != null && !user.getAddress().equals("")) {
             existedUser.setAddress(user.getAddress());
@@ -223,6 +223,7 @@ public class DeliveryService {
     public void addManager(User user) {
         if (user.getName()!=null && user.getPassword()!=null){
             user.setRole("ROLE_MANAGER");
+            user.setPassword(toMD5(user.getPassword()));
             userDao.saveUser(user);
         }
     }
